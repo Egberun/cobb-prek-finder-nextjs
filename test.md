@@ -1,4 +1,1 @@
-{
-  "content": "VGhpcyBpcyBhIHRlc3QgZmlsZQ==",
-  "encoding": "base64"
-}
+VGhpcyBpcyBhIHRlc3QgZmlsZQo=
