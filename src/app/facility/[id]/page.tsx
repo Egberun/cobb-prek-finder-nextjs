@@ -1,1 +1,38 @@
-aW1wb3J0IHsgU3VzcGVuc2UgfSBmcm9tICdyZWFjdCc7CmltcG9ydCBGYWNpbGl0eVByb2ZpbGUgZnJvbSAnQC9jb21wb25lbnRzL0ZhY2lsaXR5UHJvZmlsZSc7CmltcG9ydCB0eXBlIHsgTWV0YWRhdGEgfSBmcm9tICduZXh0JzsKCmludGVyZmFjZSBGYWNpbGl0eVBhZ2VQcm9wcyB7CiAgcGFyYW1zOiB7CiAgICBpZDogc3RyaW5nOwogIH07Cn0KCi8vIFRoaXMgd2lsbCBiZSByZXBsYWNlZCB3aXRoIGFjdHVhbCBkYXRhIGZldGNoaW5nCmFzeW5jIGZ1bmN0aW9uIGdldEZhY2lsaXR5KGlkOiBzdHJpbmcpIHsKICAvLyBGb3Igbm93LCByZXR1cm4gbnVsbCB0byB1c2UgdGhlIGRlZmF1bHQgZmFjaWxpdHkgZGF0YQogIHJldHVybiBudWxsOwp9CgpleHBvcnQgYXN5bmMgZnVuY3Rpb24gZ2VuZXJhdGVNZXRhZGF0YSh7IHBhcmFtcyB9OiBGYWNpbGl0eVBhZ2VQcm9wcyk6IFByb21pc2U8TWV0YWRhdGE+IHsKICBjb25zdCBmYWNpbGl0eSA9IGF3YWl0IGdldEZhY2lsaXR5KHBhcmFtcy5pZCk7CiAgCiAgcmV0dXJuIHsKICAgIHRpdGxlOiBmYWNpbGl0eSA/IGAke2ZhY2lsaXR5Lm5hbWV9IC0gQ29iYiBQcmUtSyBGaW5kZXJgIDogJ0ZhY2lsaXR5IERldGFpbHMgLSBDb2JiIFByZS1LIEZpbmRlcicsCiAgICBkZXNjcmlwdGlvbjogZmFjaWxpdHkgCiAgICAgID8gYExlYXJuIG1vcmUgYWJvdXQgJHtmYWNpbGl0eS5uYW1lfSwgYSBQcmUtSyBmYWNpbGl0eSBpbiBDb2JiIENvdW50eSwgR0FgCiAgICAgIDogJ0RldGFpbGVkIGluZm9ybWF0aW9uIGFib3V0IFByZS1LIGZhY2lsaXRpZXMgaW4gQ29iYiBDb3VudHksIEdBJywKICB9Owp9CgpleHBvcnQgZGVmYXVsdCBhc3luYyBmdW5jdGlvbiBGYWNpbGl0eVBhZ2UoeyBwYXJhbXMgfTogRmFjaWxpdHlQYWdlUHJvcHMpIHsKICBjb25zdCBmYWNpbGl0eSA9IGF3YWl0IGdldEZhY2lsaXR5KHBhcmFtcy5pZCk7CiAgCiAgcmV0dXJuICgKICAgIDxtYWluIGNsYXNzTmFtZT0ibWluLWgtc2NyZWVuIHAtNCBtZDpwLTgiPgogICAgICA8U3VzcGVuc2UgZmFsbGJhY2s9ezxkaXY+TG9hZGluZy4uLjwvZGl2Pn0+CiAgICAgICAgPEZhY2lsaXR5UHJvZmlsZSBmYWNpbGl0eT17ZmFjaWxpdHl9IC8+CiAgICAgIDwvU3VzcGVuc2U+CiAgICA8L21haW4+CiAgKTsKfQ==
+import { Suspense } from 'react'
+import type { Metadata } from 'next'
+import { FacilityProfile } from '../../../components/FacilityProfile'
+
+interface FacilityPageProps {
+  params: {
+    id: string;
+  };
+}
+
+// This will be replaced with actual data fetching
+async function getFacility(id: string) {
+  // For now, return null to use the default facility data
+  return null;
+}
+
+export async function generateMetadata({ params }: FacilityPageProps): Promise<Metadata> {
+  const facility = await getFacility(params.id);
+  
+  return {
+    title: facility ? `${facility.name} - Cobb Pre-K Finder` : 'Facility Details - Cobb Pre-K Finder',
+    description: facility 
+      ? `Learn more about ${facility.name}, a Pre-K facility in Cobb County, GA`
+      : 'Detailed information about Pre-K facilities in Cobb County, GA',
+  };
+}
+
+export default async function FacilityPage({ params }: FacilityPageProps) {
+  const facility = await getFacility(params.id);
+  
+  return (
+    <main className="min-h-screen p-4 md:p-8">
+      <Suspense fallback={<div>Loading...</div>}>
+        <FacilityProfile facility={facility} />
+      </Suspense>
+    </main>
+  );
+}
