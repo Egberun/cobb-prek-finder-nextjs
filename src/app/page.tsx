@@ -1,5 +1,5 @@
-import PreKSearch from '../components/PreKSearch';
-import PreKResults from '../components/PreKResults';
+import PreKSearch from '@/components/PreKSearch';
+import PreKResults from '@/components/PreKResults';
 
 export default function Home() {
   return (
