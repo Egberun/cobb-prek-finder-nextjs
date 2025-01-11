@@ -1,0 +1,46 @@
+flowchart TB
+    subgraph "Client Layer"
+        Web["Web Application\n(Next.js)"]
+        Mobile["Mobile App\n(React Native)"]
+    end
+
+    subgraph "API Gateway Layer"
+        API["API Gateway\n(Auth, Rate Limiting)"]
+    end
+
+    subgraph "Application Layer"
+        Services["Microservices"]
+        subgraph "Core Services"
+            Search["Search Service"]
+            Compare["Comparison Service"]
+            Profile["Profile Service"]
+            Review["Review Service"]
+            Notify["Notification Service"]
+        end
+        
+        subgraph "AI Services"
+            Recommender["AI Recommendation Engine"]
+            Insights["AI Insights Engine"]
+            Matching["Parent-School Matching"]
+        end
+    end
+
+    subgraph "Data Layer"
+        DB[("Primary Database")]
+        Cache[("Redis Cache")]
+        Search_DB[("Search Index")]
+        Vector_DB[("Vector Database")]
+    end
+
+    subgraph "External Services"
+        DECAL["GA DECAL API"]
+        Maps["Geolocation Service"]
+        Housing["Real Estate API"]
+        Schools["School District API"]
+    end
+
+    subgraph "Analytics & Monitoring"
+        Metrics["Metrics Collection"]
+        Logs["Log Aggregation"]
+        Analytics["Usage Analytics"]
+    end
