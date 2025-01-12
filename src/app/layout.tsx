@@ -1,19 +1,18 @@
-import type { Metadata } from 'next';
 import './globals.css';
-
-export const metadata: Metadata = {
-  title: 'Cobb County Pre-K Finder',
-  description: 'Find and compare Pre-K facilities in Cobb County, Georgia',
-};
+import { AppStateProvider } from '../context/AppStateContext';
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <AppStateProvider>
+          {children}
+        </AppStateProvider>
+      </body>
     </html>
   );
 }
