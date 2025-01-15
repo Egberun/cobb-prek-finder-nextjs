@@ -1,5 +1,5 @@
 import './globals.css';
-import { AppStateProvider } from '../context/AppStateContext';
+import { Providers } from '../components/Providers';
 
 export default function RootLayout({
   children,
@@ -9,9 +9,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-        <AppStateProvider>
+        <Providers>
           {children}
-        </AppStateProvider>
+        </Providers>
       </body>
     </html>
   );
