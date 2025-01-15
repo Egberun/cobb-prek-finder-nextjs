@@ -1,3 +1,5 @@
+'use client';
+
 import { createContext, useContext, useReducer, ReactNode } from 'react';
 import type { Facility } from '../types/facility';
 import type { SearchFilters, SearchLocation } from '../types/search';
